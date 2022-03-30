@@ -1,0 +1,36 @@
+/*
+ ============================================================================
+ Name        : clase1_ejercicio4.c
+ Author      : Nicolás Caruso
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+/*
+ * d-Operadores Logicos
+Aplicando el concepto de Operadores Lógicos con valores booleanos en el condicional:
+Solicitar un número al usuario
+Informar si el mismo es par o impar.
+ * */
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+	int numeroUsuario;
+
+	printf("escriba un número: ");
+	scanf("%d", &numeroUsuario);
+
+	if (numeroUsuario % 2 == 0) {
+		printf("%d es par", numeroUsuario);
+	} else {
+		printf("%d es impar", numeroUsuario);
+	}
+
+	return EXIT_SUCCESS;
+}

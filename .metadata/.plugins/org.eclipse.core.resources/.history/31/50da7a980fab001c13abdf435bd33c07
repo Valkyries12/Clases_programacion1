@@ -1,0 +1,27 @@
+/*
+ ============================================================================
+ Name        : ejercicio_2.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ b-Entrada/salida
+Pedir el sueldo al usuario. Sumarle un 10% e informarle cuál será su sueldo con aumento.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+	setbuf(stdout, NULL);
+	float sueldo;
+
+	printf("Por favor ingrese su sueldo: ");
+	scanf("%f", &sueldo);
+
+	sueldo = sueldo * 1.10;
+
+	printf("El sueldo con un 10% aumento es %f", sueldo); /* prints !!!Hello World!!! */
+	return EXIT_SUCCESS;
+}
