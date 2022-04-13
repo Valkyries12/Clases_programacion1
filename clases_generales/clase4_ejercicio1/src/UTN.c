@@ -6,6 +6,8 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#define TRUE 1
+#define FALSE 0
 
 int UTN_getInt(int * pNumeroIngresado,char * mensaje,char * mensajeError,
 		int maximo, int minimo, int maximoDeReintentos){
@@ -62,29 +64,50 @@ int UTN_getCaracter(int * pCaracterIngresado,char * mensaje,char * mensajeError,
 }
 
 
-int UTN_verificarSiNo(char * pLetra, int maximoIntentos) {
-	char auxLetra;
-	unsigned int intentos;
-	int error;
-	error = -1;
-	intentos = 1;
-	if (maximoIntentos > 1) {
-		printf("Ingrese una opción... s/n: ");
-			scanf("%c", &auxLetra);
-			fflush(stdin);
-			while(!(auxLetra == 's' || auxLetra == 'n') && intentos < maximoIntentos) {
-				printf("Opción inválida. Por favor ingrese la opción correcta s/n: ");
-				scanf("%c", &auxLetra);
-				fflush(stdin);
-				intentos ++;
-				error = -1;
-			}
-			error = 0;
-			if (error == 0) {
-				*pLetra = auxLetra;
-			};
-	};
+int UTN_loguear(int * pIsLogged, int intentosMaximos) {
+	char usuario;
+	char contrasenia;
+	int auxIsLogged;
+	int codigoError;
+	int intentos;
+	intentos = 0;
+	codigoError = -1;
 
-	return error;
+	if (pIsLogged != NULL && intentosMaximos > 1) {
+		printf("\n === LOGIN ===");
+		while(intentos < intentosMaximos) {
+			if (*pIsLogged) {
+					printf("\n Usted se encuentra logueado\n");
+					intentos = intentosMaximos;
+					codigoError = 0;
+			} else {
+				printf("\nIngrese usuario: ");
+				fflush(stdin);
+				scanf("%c", &usuario);
+
+				printf("\nIngrese contrasenia: ");
+				fflush(stdin);
+				scanf("%c", &contrasenia);
+
+			}
+
+			if (usuario == 'q' && contrasenia == 'q') {
+				auxIsLogged = TRUE;
+				printf("\n Bienvenido al sistema \n\n");
+				*pIsLogged = auxIsLogged;
+				intentos = intentosMaximos;
+				codigoError = 0;
+			} else {
+				auxIsLogged = FALSE;
+				*pIsLogged = auxIsLogged;
+				intentos++;
+				printf("\n Datos incorrectos. \n");
+			}
+		}
+	}
+
+
+	return codigoError;
+
 }
 

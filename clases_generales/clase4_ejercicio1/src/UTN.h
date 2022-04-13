@@ -30,12 +30,12 @@ int UTN_getInt(int * pNumeroIngresado,char * mensaje,char * mensajeError,int max
 /// @return En caso de exito (0), en caso de error (-1)
 int UTN_getCaracter(int * pCaracterIngresado,char * mensaje,char * mensajeError, int maximo, int minimo, int maximoDeReintentos);
 
-/// @brief verifica si la opcion elegida es s o n
+/// @brief Solicita usuario y contraseña,lo valida, verifica y devuelve un resultado
 ///
-/// @param pLetra -> puntero a variable donde se escribirá el valor ingresado si es correcto
-/// @param maximoIntentos -> cantidad de reintentos permitidos
-/// @return retorna 0 para success y -1 si fallo
-int UTN_verificarSiNo(char * pLetra, int maximoIntentos);
+/// @param pIsLogged Puntero al resultado alli se dejará TRUE o FALSE si fue logeado o no
+/// @param intentosMaximos Cantidad de reintentos en caso de error
+/// @return En caso de exito (0), en caso de error (-1)
+int UTN_loguear(int * pIsLogged, int intentosMaximos);
 
 
 #endif /* UTN_H_ */
