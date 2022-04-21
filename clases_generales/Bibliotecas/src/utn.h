@@ -131,4 +131,47 @@ int utn_contarNegativos(int arr[], int * cantidadNegativos, int longitudArray);
 int utn_inicializarArrayDeEnteros(int arr[], int len, int valorInicial);
 
 
+
+/// @brief Suma los numeros pares del array
+///
+/// @param arr -> Array que contiene numeros enteros
+/// @param len -> longitud del array
+/// @param resultadoSuma -> puntero donde ira alojada la suma de los pares
+/// @return En caso de exito (0), en caso de error (-1)
+int utn_sumarEnterosParesDelArray(int arr[], int len, int * resultadoSuma);
+
+
+/// @brief Calcular el numero impar mayor
+///
+/// @param arr -> Array que contiene numero enteros
+/// @param len-> longitud del array
+/// @param mayorImpar punteto donde ira alojado el mayor impar
+/// @return En caso de exito (0), en caso de error (-1)
+int utn_calcularEnteroMayorImpar(int arr[], int len, int * mayorImpar);
+
+
+/// @brief Imprime todos los valores del array
+///
+/// @param arr -> Array que contiene numeros enteros
+/// @param len -> Longitud del array
+/// @return En caso de exito (0), en caso de error (-1)
+int utn_imprimirEnterosArray(int arr[], int len);
+
+
+
+/// @brief Imprime los valores pares del array
+///
+/// @param arr -> array que contiene numeros enteros
+/// @param len -> longitud del array
+/// @return En caso de exito (0), en caso de error (-1)
+int utn_imprimirEnterosParesArray(int arr[], int len);
+
+
+/// @brief Imprime los valores de las posiciones impares del array
+///
+/// @param arr -> Array que contiene numeros enteros
+/// @param len -> longitud del array
+/// @return En caso de exito (0), en caso de error (-1)
+int utn_imprimirEnterosDePosicionesImparesArray(int arr[],int len);
+
 #endif /* UTN_H_ */

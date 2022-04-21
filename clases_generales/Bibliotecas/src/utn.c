@@ -16,27 +16,29 @@
 int utn_getInt(int * pNumeroIngresado, char * mensaje, char * mensajeError, int maximo, int minimo, int maximoDeReintentos){
 
 	int auxNumeroIngresado;
-	int retorno;
-	retorno = -1;
+	int codigoError;
+	codigoError = -1;
 
 	if(pNumeroIngresado != NULL && maximo >= minimo && maximoDeReintentos>= 0){
 		do{
-			printf("%s", mensaje);
-			scanf("%d", &auxNumeroIngresado);
 			maximoDeReintentos--;
-
-			if(auxNumeroIngresado >= minimo && auxNumeroIngresado <= maximo){
-						*pNumeroIngresado = auxNumeroIngresado;
-						retorno = 0;
-						break;
+			printf("%s", mensaje);
+			if(scanf("%d", &auxNumeroIngresado) == 0) {
+				break;
 			}else{
-				printf("%s", mensajeError);
+				if(auxNumeroIngresado >= minimo && auxNumeroIngresado <= maximo){
+					*pNumeroIngresado = auxNumeroIngresado;
+					codigoError = 0;
+					break;
+				}else{
+					printf("%s", mensajeError);
+				}
 			}
 
 		}while(maximoDeReintentos > 0);
 	}
 
-	return retorno;
+	return codigoError;
 }
 
 
@@ -294,6 +296,103 @@ int utn_inicializarArrayDeEnteros(int arr[], int len, int valorInicial) {
 	if (len > 0) {
 		for(int i = 0; i < len ; i++) {
 			arr[i] = valorInicial;
+		}
+		codigoError = 0;
+	}
+
+	return codigoError;
+}
+
+
+
+int utn_sumarEnterosParesDelArray(int arr[], int len, int * resultadoSuma) {
+	int codigoError;
+	int resultado;
+
+	resultado = 0;
+	codigoError = -1;
+	if (arr != NULL  && len > 0) {
+		for(int i = 0; i < len; i++) {
+			if (arr[i] % 2 == 0) {
+				resultado += arr[i];
+			}
+		}
+		* resultadoSuma = resultado;
+		codigoError = 0;
+	}
+
+
+	return codigoError;
+}
+
+
+
+int utn_calcularEnteroMayorImpar(int arr[], int len, int * mayorImpar) {
+	int codigoError;
+	int mayor;
+
+	mayor = arr[0];
+	codigoError = -1;
+	if (arr != NULL && len > 0) {
+		for(int i = 0; i < len; i++) {
+			if (arr[i] >= mayor) {
+				mayor = arr[i];
+			}
+		}
+
+		* mayorImpar = mayor;
+		codigoError = 0;
+	}
+
+
+	return codigoError;
+}
+
+
+int utn_imprimirEnterosArray(int arr[], int len) {
+	int codigoError;
+
+	codigoError = -1;
+	if (arr != NULL && len > 0) {
+		for(int i = 0; i < len; i++) {
+			printf("\n%d", arr[i]);
+		}
+		codigoError = 0;
+	}
+
+
+	return codigoError;
+}
+
+
+
+int utn_imprimirEnterosParesArray(int arr[], int len) {
+	int codigoError;
+
+	codigoError = -1;
+	if (arr != NULL && len > 0) {
+		for(int i = 0; i < len; i++) {
+			if (arr[i] % 2 == 0) {
+				printf("\n%d", arr[i]);
+			}
+		}
+		codigoError = 0;
+	}
+
+	return codigoError;
+}
+
+
+
+int utn_imprimirEnterosDePosicionesImparesArray(int arr[],int len) {
+	int codigoError;
+
+	codigoError = -1;
+	if (arr != NULL && len > 0) {
+		for(int i = 0; i < len; i++) {
+			if (i % 2 != 0) {
+				printf("\n%d", arr[i]);
+			}
 		}
 		codigoError = 0;
 	}
