@@ -205,6 +205,21 @@ int utn_calcularMenorEntero(int arr[], int len, int * pMenor, char tipo);
 int utn_calcularMayorEntero(int arr[], int len, int * pMayor, char tipo);
 
 
+/// @brief ordena de menor a mayor los enteros
+///
+/// @param arr -> array de enteros
+/// @param len -> longitud del array
+/// @return En caso de exito (0), en caso de error (-1)
+int utn_ordenarArrayMenorAMayor(int arr[], int len);
+
+
+/// @brief ordena de menor a mayor los enteros
+///
+/// @param arr -> array de enteros
+/// @param len -> longitud del array
+/// @return En caso de exito (0), en caso de error (-1)
+int utn_ordenarArrayMayorAMenor(int arr[], int len);
+
 
 
 #endif /* UTN_H_ */

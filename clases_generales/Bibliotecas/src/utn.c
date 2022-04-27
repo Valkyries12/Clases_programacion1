@@ -524,3 +524,65 @@ int utn_calcularMayorEntero(int arr[], int len, int * pMayor, char tipo) {
 
 
 
+int utn_ordenarArrayMenorAMayor(int arr[], int len) {
+	int codigoError;
+	int estaOrdenado;
+	int aux;
+
+	codigoError = -1;
+
+
+	if (arr != NULL && len > 0) {
+
+		do{
+			estaOrdenado = TRUE;
+			len--;
+			for(int i = 0; i < len; i++) {
+				if (arr[i] > arr[i+1]){
+					aux = arr[i];
+					arr[i] = arr[i+1];
+					arr[i+1] = aux;
+					estaOrdenado = FALSE;
+				}
+			}
+		} while(!estaOrdenado);
+		codigoError = 0;
+	}
+
+
+	return codigoError;
+}
+
+
+
+int utn_ordenarArrayMayorAMenor(int arr[], int len) {
+	int codigoError;
+	int estaOrdenado;
+	int aux;
+
+	codigoError = -1;
+
+
+	if (arr != NULL && len > 0) {
+
+		do{
+			estaOrdenado = TRUE;
+			len--;
+			for(int i = 0; i < len; i++) {
+				if (arr[i] < arr[i+1]){
+					aux = arr[i];
+					arr[i] = arr[i+1];
+					arr[i+1] = aux;
+					estaOrdenado = FALSE;
+				}
+			}
+		} while(!estaOrdenado);
+		codigoError = 0;
+	}
+
+
+	return codigoError;
+}
+
+
+
