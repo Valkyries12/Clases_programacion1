@@ -15,12 +15,13 @@
 
 
 int main(void) {
-	int numeros[6] = {10,5,1,45,21,56};
+	int codigo;
+	char palabra[] = {'2','3','\0' };
 	setbuf(stdout, NULL);
 	puts("!!!probando!!!"); /* prints !!!Hello World!!! */
 
-	utn_ordenarArrayMenorAMayor(numeros, 6);
-	utn_imprimirEnterosArray(numeros, 6);
+	codigo = utn_esNumerico(palabra);
+	printf("%d", codigo);
 
 	return EXIT_SUCCESS;
 };

@@ -586,3 +586,62 @@ int utn_ordenarArrayMayorAMenor(int arr[], int len) {
 
 
 
+int utn_imprimirString(char arr[]) {
+	int codigoError;
+	int i;
+
+	i = 0;
+	codigoError = -1;
+	if (arr != NULL) {
+		while(arr[i] != '\0') {
+			printf("%c", arr[i]);
+			i++;
+		}
+		codigoError = 0;
+	}
+
+
+	return codigoError;
+}
+
+
+int utn_tieneSoloLetras(char arr[]) {
+	int hasLetters;
+	int i;
+
+	i = 0;
+	hasLetters = TRUE;
+	if (arr != NULL) {
+		while(arr[i] != '\0') {
+			if(!((arr[i] >= 'A' && arr[i] <= 'Z') || (arr[i] >= 'a' && arr[i] <= 'z'))) {
+				hasLetters = FALSE;
+				break;
+			}
+			i++;
+		}
+	}
+
+	return hasLetters;
+}
+
+
+
+int utn_esNumerico(char arr[]){
+	int hasNumbers;
+	int i;
+
+	i = 0;
+	hasNumbers = TRUE;
+	if (arr != NULL) {
+		while(arr[i] != '\0') {
+			if (arr[i] < '0' || arr[i] > '9') {
+				hasNumbers = FALSE;
+				break;
+			}
+			i++;
+		}
+	}
+
+	return hasNumbers;
+}
+

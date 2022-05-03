@@ -221,5 +221,25 @@ int utn_ordenarArrayMenorAMayor(int arr[], int len);
 int utn_ordenarArrayMayorAMenor(int arr[], int len);
 
 
+/// @brief imprime la string dada (array de chars)
+///
+/// @param arr -> array de chars
+/// @return En caso de exito (0), en caso de error (-1)
+int utn_imprimirString(char arr[]);
+
+
+/// @brief devuelve TRUE (1) o FALSE(0) dependiendo si solo tiene letras
+///
+/// @param arr -> array de chars
+/// @return En caso de tener solo letras TRUE (1), en caso de tener otro tipo de dato FALSE (0)
+int utn_tieneSoloLetras(char arr[]);
+
+
+/// @brief devuelve TRUE (1) o FALSE(0) dependiendo si solo tiene números
+///
+/// @param arr -> array de chars
+/// @return En caso de tener solo números TRUE (1), en caso de tener otro tipo de dato FALSE (0)
+int utn_esNumerico(char arr[]);
+
 
 #endif /* UTN_H_ */
