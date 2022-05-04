@@ -16,16 +16,14 @@
 
 int main(void) {
 	int codigoError;
-	char palabra[24];
-	int numero;
-	char letra;
+	char tel[8];
 
 	setbuf(stdout, NULL);
 	puts("!!!probando!!!"); /* prints !!!Hello World!!! */
 
 //	codigoError = utn_esNumerico(palabra);
-	codigoError = utn_getString(palabra, "\nIngrese una palabra: ", "\n error", 3, 24);
-	printf("%s", palabra);
+	codigoError = utn_getTelefono(tel, "\nIngrese un telefono: ", "\n error", 3, 8);
+	printf("%s", tel);
 
 
 	return EXIT_SUCCESS;

@@ -43,9 +43,19 @@ int utn_getFloat(float * pNumeroIngresado, char * mensaje, char * mensajeError, 
 int utn_getCaracter(char * pCaracterIngresado,char * mensaje,char * mensajeError, int maximo, int minimo, int maximoDeReintentos);
 
 
-
+/// @brief  Solicita un texto al usuario, lo valida, verifica y devuelve el resultado
+///
+/// @param stringAIngresar -> puntero al resultado, alli se dejara la frase ingresada por el usuario
+/// @param mensaje -> Es el mensaje a ser mostrado
+/// @param mensajeError -> Es el mensaje a ser mostrado en caso de error
+/// @param maximoReintentos -> Cantidad de reintentos en caso de error
+/// @param len -> longitud maxima de la palabra
+/// @return En caso de exito (0), en caso de error (-1)
 int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int len);
 
+
+
+int utn_getTelefono(char * telefonoAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int len);
 
 
 /// @brief Solicita usuario y contraseña,lo valida, verifica y devuelve un resultado
