@@ -166,6 +166,34 @@ int utn_getTelefono(char * telefonoAIngresar, char * mensaje, char * mensajeErro
 }
 
 
+int utn_getDocumento(char * numeroDocumento, char * mensaje, char * mensajeError, int maximoReintentos, int len ) {
+	int codigoError;
+	char buffer[len+1];
+
+	codigoError = -1;
+	if (numeroDocumento != NULL && mensaje != NULL && mensajeError!= NULL && maximoReintentos > 0 && len > 0) {
+		do {
+			maximoReintentos--;
+			printf("%s", mensaje);
+			fgets(buffer, sizeof(buffer),stdin);
+			buffer[strlen(buffer)] = '\0';
+
+			if (utn_esNumerico(buffer)) {
+				strncpy(numeroDocumento, buffer, len+1);
+				codigoError = 0;
+				break;
+			} else {
+				printf("%s", mensajeError);
+			}
+
+		} while(maximoReintentos > 0);
+	}
+
+
+	return codigoError;
+}
+
+
 int utn_loguear(int * pIsLogged, int intentosMaximos) {
 	char usuario;
 	char contrasenia;

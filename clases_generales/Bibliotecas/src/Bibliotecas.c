@@ -17,13 +17,14 @@
 int main(void) {
 	int codigoError;
 	char tel[8];
+	char numeroDocumento[8];
 
 	setbuf(stdout, NULL);
 	puts("!!!probando!!!"); /* prints !!!Hello World!!! */
 
 //	codigoError = utn_esNumerico(palabra);
-	codigoError = utn_getTelefono(tel, "\nIngrese un telefono: ", "\n error", 3, 8);
-	printf("%s", tel);
+	codigoError = utn_getDocumento(numeroDocumento, "\nIngrese dni: ", "\nHa sucedido un error", 3, 8);
+	printf("%s", numeroDocumento);
 
 
 	return EXIT_SUCCESS;

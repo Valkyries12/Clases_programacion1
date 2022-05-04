@@ -55,7 +55,28 @@ int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, i
 
 
 
+/// @brief Solicita al usuario un telefono (formato string), lo valida, verifica y devuelve resultado
+///
+/// @param telefonoAIngresar -> puntero al resultado, alli se dejará el telefono ingresado por el usuario
+/// @param mensaje -> es el mensaje a ser mostrado
+/// @param mensajeError -> es el mensaje a ser mostrado en caso de error
+/// @param maximoReintentos -> cantidad de reintentos en caso de error
+/// @param len -> longitud maxima del telefono
+/// @return -> En caso de exito (0), en caso de error (-1)
 int utn_getTelefono(char * telefonoAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int len);
+
+
+
+/// @brief Solicita al usuario un numero de documento, lo valida, verifica y devuelve un resultado
+///
+/// @param numeroDocumento -> puntero al resultado, alli se dejara el el documento ingresado por el usuario
+/// @param mensaje -> es el mensaje en el ingreso de datos
+/// @param mensajeError -> es el mensaje en caso de error
+/// @param maximoReintentos -> cantidad de reintenttos en caso de error
+/// @param len -> longitud maxima del documento
+/// @return -> En caso de exito (0), en caso de error (-1)
+int utn_getDocumento(char * numeroDocumento, char * mensaje, char * mensajeError, int maximoReintentos, int len );
+
 
 
 /// @brief Solicita usuario y contraseña,lo valida, verifica y devuelve un resultado
