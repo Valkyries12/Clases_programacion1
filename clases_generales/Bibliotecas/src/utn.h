@@ -79,6 +79,9 @@ int utn_getDocumento(char * numeroDocumento, char * mensaje, char * mensajeError
 
 
 
+int utn_getMail(char * mailAIngresar, char * mensaje, char * mensajeError, int maximoReintentos);
+
+
 /// @brief Solicita usuario y contraseña,lo valida, verifica y devuelve un resultado
 ///
 /// @param pIsLogged Puntero al resultado alli se dejará TRUE o FALSE si fue logeado o no

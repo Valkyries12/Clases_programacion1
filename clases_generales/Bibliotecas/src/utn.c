@@ -194,6 +194,65 @@ int utn_getDocumento(char * numeroDocumento, char * mensaje, char * mensajeError
 }
 
 
+
+int utn_getMail(char * mailAIngresar, char * mensaje, char * mensajeError, int maximoReintentos) {
+	int codigoError;
+	char buffer[250];
+	int qtyArroba;
+	int qtyGuionMedio;
+	int qtyGuionBajo;
+	int qtyPunto;
+	int i;
+
+	qtyArroba = 0;
+	qtyGuionBajo = 0;
+	qtyGuionMedio = 0;
+	qtyPunto = 0;
+	i = 0;
+	codigoError = -1;
+	if (mailAIngresar != NULL && mensaje != NULL && mensajeError != NULL && maximoReintentos > 0) {
+		do {
+			maximoReintentos--;
+			printf("%s", mensaje);
+			fgets(buffer, sizeof(buffer), stdin);
+			buffer[strlen(buffer)-1] = '\0';
+
+			while(buffer[i] != '\0') {
+				switch (buffer[i]) {
+					case '@':
+						qtyArroba++;
+						break;
+					case '_':
+						qtyGuionBajo++;
+						break;
+					case '-':
+						qtyGuionMedio++;
+						break;
+					case '.':
+						qtyPunto++;
+						break;
+
+				}
+				i++;
+			}
+
+
+			if (qtyArroba == 1 && qtyPunto == 1 && qtyGuionBajo >= 0 && qtyGuionMedio >= 0) {
+				strncpy(mailAIngresar, buffer, sizeof(buffer));
+				codigoError = 0;
+				break;
+			} else {
+				printf("%s", mensajeError);
+			}
+
+
+		} while(maximoReintentos > 0);
+	}
+
+	return codigoError;
+}
+
+
 int utn_loguear(int * pIsLogged, int intentosMaximos) {
 	char usuario;
 	char contrasenia;
