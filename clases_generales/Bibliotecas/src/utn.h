@@ -42,6 +42,12 @@ int utn_getFloat(float * pNumeroIngresado, char * mensaje, char * mensajeError, 
 /// @return En caso de exito (0), en caso de error (-1)
 int utn_getCaracter(char * pCaracterIngresado,char * mensaje,char * mensajeError, int maximo, int minimo, int maximoDeReintentos);
 
+
+
+int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int len);
+
+
+
 /// @brief Solicita usuario y contraseña,lo valida, verifica y devuelve un resultado
 ///
 /// @param pIsLogged Puntero al resultado alli se dejará TRUE o FALSE si fue logeado o no

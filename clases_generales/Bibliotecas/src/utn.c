@@ -16,15 +16,22 @@
 
 int utn_getInt(int * pNumeroIngresado, char * mensaje, char * mensajeError, int maximo, int minimo, int maximoDeReintentos){
 
+	char buffer[64];
 	int auxNumeroIngresado;
 	int codigoError;
 	codigoError = -1;
+
 
 	if(pNumeroIngresado != NULL && maximo >= minimo && maximoDeReintentos>= 0){
 		do{
 			maximoDeReintentos--;
 			printf("%s", mensaje);
-			if(scanf("%d", &auxNumeroIngresado) == 1 && auxNumeroIngresado >= minimo && auxNumeroIngresado <= maximo) {
+			fgets(buffer, sizeof(buffer), stdin);
+			buffer[strlen(buffer)-1] = '\0';
+			if (utn_esNumerico(buffer)) {
+				auxNumeroIngresado = atoi(buffer);
+			}
+			if(auxNumeroIngresado >= minimo && auxNumeroIngresado <= maximo) {
 				*pNumeroIngresado = auxNumeroIngresado;
 				codigoError = 0;
 				break;
@@ -95,6 +102,38 @@ int utn_getCaracter(char * pCaracterIngresado,char * mensaje,char * mensajeError
 	}
 
 	return retorno;
+}
+
+
+
+int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int len) {
+	int codigoError;
+	char buffer[255];
+
+	codigoError = -1;
+	if(stringAIngresar != NULL && mensaje != NULL && mensajeError != NULL && maximoReintentos >= 0 && len > 0) {
+
+		do {
+			maximoReintentos--;
+			printf("%s", mensaje);
+			fgets(buffer, sizeof(buffer), stdin);
+			buffer[strlen(buffer)-1] = '\0';
+
+			if (utn_tieneSoloLetras(buffer)) {
+				strncpy(stringAIngresar, buffer, len);
+				codigoError = 0;
+				break;
+			} else {
+				printf("%s", mensajeError);
+			}
+		} while(maximoReintentos > 0);
+
+
+	}
+
+
+
+	return codigoError;
 }
 
 
@@ -632,6 +671,7 @@ int utn_esNumerico(char arr[]){
 
 	i = 0;
 	hasNumbers = TRUE;
+
 	if (arr != NULL) {
 		while(arr[i] != '\0') {
 			if (arr[i] < '0' || arr[i] > '9') {
@@ -640,6 +680,7 @@ int utn_esNumerico(char arr[]){
 			}
 			i++;
 		}
+
 	}
 
 	return hasNumbers;

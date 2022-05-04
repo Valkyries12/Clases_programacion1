@@ -15,13 +15,18 @@
 
 
 int main(void) {
-	int codigo;
-	char palabra[] = {'2','3','\0' };
+	int codigoError;
+	char palabra[24];
+	int numero;
+	char letra;
+
 	setbuf(stdout, NULL);
 	puts("!!!probando!!!"); /* prints !!!Hello World!!! */
 
-	codigo = utn_esNumerico(palabra);
-	printf("%d", codigo);
+//	codigoError = utn_esNumerico(palabra);
+	codigoError = utn_getString(palabra, "\nIngrese una palabra: ", "\n error", 3, 24);
+	printf("%s", palabra);
+
 
 	return EXIT_SUCCESS;
 };
