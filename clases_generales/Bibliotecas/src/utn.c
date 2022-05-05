@@ -58,7 +58,7 @@ int utn_getFloat(float * pNumeroIngresado, char * mensaje, char * mensajeError, 
 	if(pNumeroIngresado != NULL && maximo >= minimo && maximoDeReintentos>= 0){
 		do{
 			printf("%s", mensaje);
-			scanf("%f", &auxNumeroIngresado);
+
 			maximoDeReintentos--;
 
 			if(auxNumeroIngresado >= minimo && auxNumeroIngresado <= maximo){
@@ -784,17 +784,25 @@ int utn_tieneSoloLetras(char arr[]) {
 int utn_esNumerico(char arr[]){
 	int hasNumbers;
 	int i;
+	int contadorPunto;
 
+	contadorPunto = 0;
 	i = 0;
 	hasNumbers = TRUE;
 
 	if (arr != NULL) {
 		while(arr[i] != '\0') {
 			if (arr[i] < '0' || arr[i] > '9') {
+				if (arr[i] == '.' && arr[0] != '.') {
+					contadorPunto++;
+				}
 				hasNumbers = FALSE;
 				break;
 			}
 			i++;
+		}
+		if (contadorPunto == 1) {
+			hasNumbers = TRUE;
 		}
 
 	}
