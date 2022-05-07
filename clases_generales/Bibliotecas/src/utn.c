@@ -52,7 +52,9 @@ int utn_getInt(int * pNumeroIngresado, char * mensaje, char * mensajeError, int 
 int utn_getFloat(float * pNumeroIngresado, char * mensaje, char * mensajeError, float maximo, float minimo, int maximoDeReintentos){
 
 	float auxNumeroIngresado;
+	char buffer[250];
 	int retorno;
+
 	retorno = -1;
 
 	if(pNumeroIngresado != NULL && maximo >= minimo && maximoDeReintentos>= 0){
@@ -60,6 +62,12 @@ int utn_getFloat(float * pNumeroIngresado, char * mensaje, char * mensajeError, 
 			printf("%s", mensaje);
 
 			maximoDeReintentos--;
+			fgets(buffer, sizeof(buffer), stdin);
+			buffer[strlen(buffer)-1] = '\0';
+
+			if (utn_esNumerico(buffer)) {
+				auxNumeroIngresado = atof(buffer);
+			}
 
 			if(auxNumeroIngresado >= minimo && auxNumeroIngresado <= maximo){
 						*pNumeroIngresado = auxNumeroIngresado;
@@ -106,12 +114,12 @@ int utn_getCaracter(char * pCaracterIngresado,char * mensaje,char * mensajeError
 
 
 
-int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int len) {
+int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int lenMinima) {
 	int codigoError;
 	char buffer[255];
 
 	codigoError = -1;
-	if(stringAIngresar != NULL && mensaje != NULL && mensajeError != NULL && maximoReintentos >= 0 && len > 0) {
+	if(stringAIngresar != NULL && mensaje != NULL && mensajeError != NULL && maximoReintentos >= 0) {
 
 		do {
 			maximoReintentos--;
@@ -119,8 +127,8 @@ int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, i
 			fgets(buffer, sizeof(buffer), stdin);
 			buffer[strlen(buffer)-1] = '\0';
 
-			if (utn_tieneSoloLetras(buffer)) {
-				strncpy(stringAIngresar, buffer, len);
+			if (utn_tieneSoloLetras(buffer) && strlen(buffer) > lenMinima) {
+				strncpy(stringAIngresar, buffer, sizeof(buffer));
 				codigoError = 0;
 				break;
 			} else {
@@ -166,20 +174,23 @@ int utn_getTelefono(char * telefonoAIngresar, char * mensaje, char * mensajeErro
 }
 
 
-int utn_getDocumento(char * numeroDocumento, char * mensaje, char * mensajeError, int maximoReintentos, int len ) {
+int utn_getDocumento(int * numeroDocumento, char * mensaje, char * mensajeError, int maximoReintentos ) {
 	int codigoError;
-	char buffer[len+1];
+	char buffer[250];
+	int auxNumeroDocumento;
 
 	codigoError = -1;
-	if (numeroDocumento != NULL && mensaje != NULL && mensajeError!= NULL && maximoReintentos > 0 && len > 0) {
+	if (numeroDocumento != NULL && mensaje != NULL && mensajeError!= NULL && maximoReintentos > 0) {
 		do {
 			maximoReintentos--;
 			printf("%s", mensaje);
 			fgets(buffer, sizeof(buffer),stdin);
-			buffer[strlen(buffer)] = '\0';
+			buffer[strlen(buffer)-1] = '\0';
 
-			if (utn_esNumerico(buffer)) {
-				strncpy(numeroDocumento, buffer, len+1);
+			if (utn_esNumerico(buffer) && strlen(buffer) == 8) {
+//				strncpy(numeroDocumento, buffer, len+1);
+				auxNumeroDocumento = atoi(buffer);
+				* numeroDocumento = auxNumeroDocumento;
 				codigoError = 0;
 				break;
 			} else {
@@ -460,6 +471,21 @@ int utn_inicializarArrayDeEnteros(int arr[], int len, int valorInicial) {
 }
 
 
+int utn_inicializarArrayDeFloats(float arr[], int len, float valorInicial) {
+	int codigoError;
+	codigoError = -1;
+
+	if (len > 0) {
+		for(int i = 0; i < len ; i++) {
+			arr[i] = valorInicial;
+		}
+		codigoError = 0;
+	}
+
+	return codigoError;
+}
+
+
 
 int utn_sumarEnterosParesDelArray(int arr[], int len, int * resultadoSuma) {
 	int codigoError;
@@ -558,6 +584,25 @@ int utn_imprimirEnterosDePosicionesImparesArray(int arr[],int len) {
 
 
 int utn_cargarEnteroEnIndiceAleatorio(int arr[], int len, int valor , int indice) {
+	int codigoError;
+
+	codigoError = -1;
+
+	if (arr != NULL && len > 0 && indice > -1) {
+		if (arr[indice] > -1) {
+			arr[indice] = valor;
+			codigoError = 0;
+		}
+
+	}
+
+	return codigoError;
+
+}
+
+
+
+int utn_cargarFlotanteEnIndiceAleatorio(float arr[], int len, float valor , int indice) {
 	int codigoError;
 
 	codigoError = -1;

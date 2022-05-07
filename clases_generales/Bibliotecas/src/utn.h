@@ -49,9 +49,9 @@ int utn_getCaracter(char * pCaracterIngresado,char * mensaje,char * mensajeError
 /// @param mensaje -> Es el mensaje a ser mostrado
 /// @param mensajeError -> Es el mensaje a ser mostrado en caso de error
 /// @param maximoReintentos -> Cantidad de reintentos en caso de error
-/// @param len -> longitud maxima de la palabra
+/// @param lenMinima -> longitud minima requerida de caracteres
 /// @return En caso de exito (0), en caso de error (-1)
-int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int len);
+int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int lenMinima);
 
 
 
@@ -75,7 +75,7 @@ int utn_getTelefono(char * telefonoAIngresar, char * mensaje, char * mensajeErro
 /// @param maximoReintentos -> cantidad de reintenttos en caso de error
 /// @param len -> longitud maxima del documento
 /// @return -> En caso de exito (0), en caso de error (-1)
-int utn_getDocumento(char * numeroDocumento, char * mensaje, char * mensajeError, int maximoReintentos, int len );
+int utn_getDocumento(int * numeroDocumento, char * mensaje, char * mensajeError, int maximoReintentos);
 
 
 
@@ -171,6 +171,15 @@ int utn_contarNegativos(int arr[], int * cantidadNegativos, int longitudArray);
 int utn_inicializarArrayDeEnteros(int arr[], int len, int valorInicial);
 
 
+/// @brief Inicializa todos los valores del array en cada indice
+///
+/// @param arr -> array a ser inicializado
+/// @param len -> longitud del array
+/// @param valorInicial -> valor inicial por cada indice
+/// @return En caso de exito (0), en caso de error (-1)
+int utn_inicializarArrayDeFloats(float arr[], int len, float valorInicial);
+
+
 
 /// @brief Suma los numeros pares del array
 ///
@@ -223,6 +232,17 @@ int utn_imprimirEnterosDePosicionesImparesArray(int arr[],int len);
 /// @param indice -> indice indicado para cargar el dato
 /// @return En caso de exito (0), en caso de error (-1)
 int utn_cargarEnteroEnIndiceAleatorio(int arr[], int len, int valor, int indice);
+
+
+/// @brief Carga valores enteros en indices aleatorios
+///
+/// @param arr -> Array inicializado que contendrá numeros enteros
+/// @param len -> Longitud del array
+/// @param valor -> Valor entero a cargar
+/// @param indice -> indice indicado para cargar el dato
+/// @return En caso de exito (0), en caso de error (-1)
+int utn_cargarFlotanteEnIndiceAleatorio(float arr[], int len, float valor , int indice);
+
 
 
 /// @brief  Calcula el menor de los numeros enteros dependiendo si se dessea que sea negativo, positivo o ambos
