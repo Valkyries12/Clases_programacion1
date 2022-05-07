@@ -164,6 +164,23 @@ int modificarAsociado(Asociado arr[], int id, int opcionMenu, int len) {
 }
 
 
+int hayAlgoCargado(Asociado arr[], int len) {
+	int hayAlgo;
+
+	hayAlgo = FALSE;
+	if (arr != NULL && len > 0) {
+		for(int i = 0; i < len; i++) {
+			if (!arr[i].isEmpty) {
+				hayAlgo = TRUE;
+				break;
+			}
+		}
+	}
+
+	return hayAlgo;
+}
+
+
 int incrementarId(void) {
 	static int id = 756;
 	id++;

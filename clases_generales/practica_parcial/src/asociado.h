@@ -72,6 +72,15 @@ int eliminarAsociado(Asociado arr[], int id, int len);
 int modificarAsociado(Asociado arr[], int id, int opcionMenu, int len);
 
 
+/// @brief Verifica si al menos hay 1 asociado
+///
+/// @param arr -> array de asociados
+/// @param len -> longitud del array
+/// @return En caso de haber al menos un asociado TRUE (1), sino FALSE (0)
+int hayAlgoCargado(Asociado arr[], int len);
+
+
+
 /// @brief Incrementa el id por un, lo hace autoincremental
 ///
 int incrementarId(void);

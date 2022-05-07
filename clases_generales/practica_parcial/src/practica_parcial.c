@@ -20,6 +20,7 @@
 int main(void) {
 	int codigoError;
 	int opcionMenu;
+	int numeroAsociado;
 	Asociado asociados[cantidadAsociados];
 
 	setbuf(stdout, NULL);
@@ -35,7 +36,18 @@ int main(void) {
 				utn_imprimirMensajes(codigoError, "\nSe ha cargado un asociado con éxito\n", "\nHa ocurrido un error al cargar un asociado\n");
 				break;
 			case 2:
-				puts("\n === Modificar asociado === \n");
+				if (hayAlgoCargado(asociados, cantidadAsociados)) {
+					puts("\n === Modificar asociado === \n");
+					numeroAsociado = utn_getInt(&numeroAsociado, "\nIngrese el número de asociado: ", "\nError al ingresar número de asociado o no existe", 99999, 757, 3);
+					do {
+						printf("\n\n ASOCIADO Nº %d\n\n", numeroAsociado);
+						codigoError = modificarAsociado(asociados, numeroAsociado, opcionMenu, cantidadAsociados);
+						utn_imprimirMensajes(codigoError, "\nSe ha modificado el asociado\n", "\nHa ocurrido un error al modificar el asociado");
+					} while(opcionMenu != 3 && codigoError == 0);
+				} else {
+					puts("\nDebe haber al menos un asociado\n");
+				}
+
 				break;
 			case 3:
 				puts("\n === Eliminar asociado === \n");
