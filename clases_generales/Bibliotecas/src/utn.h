@@ -50,8 +50,9 @@ int utn_getCaracter(char * pCaracterIngresado,char * mensaje,char * mensajeError
 /// @param mensajeError -> Es el mensaje a ser mostrado en caso de error
 /// @param maximoReintentos -> Cantidad de reintentos en caso de error
 /// @param lenMinima -> longitud minima requerida de caracteres
+/// @param lenMaxima -> longitud maxima requerida de caracteres
 /// @return En caso de exito (0), en caso de error (-1)
-int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int lenMinima);
+int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int lenMinima, int lenMaxima);
 
 
 
@@ -300,6 +301,51 @@ int utn_tieneSoloLetras(char arr[]);
 /// @param arr -> array de chars
 /// @return En caso de tener solo números TRUE (1), en caso de tener otro tipo de dato FALSE (0)
 int utn_esNumerico(char arr[]);
+
+
+
+/// @brief Convierte la palabra a mayus
+///
+/// @param string -> palabra a convertir
+/// return En caso de exito (0), en caso de error (-1)
+int utn_convertirAMayuscula(char * string);
+
+
+
+/// @brief Redimensiona un array de int
+///
+/// @param arr -> puntero de puntero de array de enteros
+/// @param len -> puntero de la longitud del array a redimensionar
+/// @param nuevaLen -> nueva longitud
+/// @return En caso de error (-1), en caso de existo (0)
+int utn_resizeIntArray(int** arr, int* len, int nuevaLen);
+
+
+
+/// @brief Redimensiona un array de char
+///
+/// @param arr -> puntero de puntero de array de char
+/// @param len -> puntero de la longitud del array a redimensionar
+/// @param nuevaLen -> nueva longitud
+/// @return En caso de error (-1), en caso de existo (0)
+int utn_resizeCharArray(char** arr, int* len, int nuevaLen);
+
+
+
+/// @brief Redimensiona un array de float
+///
+/// @param arr -> puntero de puntero de array de float
+/// @param len -> puntero de la longitud del array a redimensionar
+/// @param nuevaLen -> nueva longitud
+/// @return En caso de error (-1), en caso de existo (0)
+int utn_resizeFloatArray(float** arr, int* len, int nuevaLen);
+
+
+
+
+
+
+
 
 
 #endif /* UTN_H_ */

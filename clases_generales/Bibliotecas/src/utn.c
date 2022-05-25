@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+
 #include "utn.h"
 
 #define TRUE 1
@@ -30,16 +32,19 @@ int utn_getInt(int * pNumeroIngresado, char * mensaje, char * mensajeError, int 
 			buffer[strlen(buffer)-1] = '\0';
 			if (utn_esNumerico(buffer)) {
 				auxNumeroIngresado = atoi(buffer);
-			}
-			if(auxNumeroIngresado >= minimo && auxNumeroIngresado <= maximo) {
-				*pNumeroIngresado = auxNumeroIngresado;
-				codigoError = 0;
-				break;
+				if(auxNumeroIngresado >= minimo && auxNumeroIngresado <= maximo) {
+					*pNumeroIngresado = auxNumeroIngresado;
+					codigoError = 0;
+					break;
 
+				}else{
+					printf("%s", mensajeError);
+				}
+//				fflush(stdin);
 			} else{
 				printf("%s", mensajeError);
 			}
-			fflush(stdin);
+
 
 		}while(maximoDeReintentos > 0);
 	}
@@ -114,21 +119,20 @@ int utn_getCaracter(char * pCaracterIngresado,char * mensaje,char * mensajeError
 
 
 
-int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int lenMinima) {
+int utn_getString(char * stringAIngresar, char * mensaje, char * mensajeError, int maximoReintentos, int lenMinima, int lenMaxima) {
 	int codigoError;
 	char buffer[255];
 
 	codigoError = -1;
-	if(stringAIngresar != NULL && mensaje != NULL && mensajeError != NULL && maximoReintentos >= 0) {
+	if(stringAIngresar != NULL && mensaje != NULL && mensajeError != NULL && maximoReintentos >= 0 && lenMaxima > 0 && lenMinima > 0) {
 
 		do {
 			maximoReintentos--;
 			printf("%s", mensaje);
 			fgets(buffer, sizeof(buffer), stdin);
 			buffer[strlen(buffer)-1] = '\0';
-
-			if (utn_tieneSoloLetras(buffer) && strlen(buffer) > lenMinima) {
-				strncpy(stringAIngresar, buffer, sizeof(buffer));
+			if (utn_tieneSoloLetras(buffer) && strlen(buffer) >= lenMinima && strlen(buffer) <= lenMaxima) {
+				strcpy(stringAIngresar, buffer);
 				codigoError = 0;
 				break;
 			} else {
@@ -176,7 +180,7 @@ int utn_getTelefono(char * telefonoAIngresar, char * mensaje, char * mensajeErro
 
 int utn_getDocumento(int * numeroDocumento, char * mensaje, char * mensajeError, int maximoReintentos ) {
 	int codigoError;
-	char buffer[250];
+	char buffer[50];
 	int auxNumeroDocumento;
 
 	codigoError = -1;
@@ -262,6 +266,7 @@ int utn_getMail(char * mailAIngresar, char * mensaje, char * mensajeError, int m
 
 	return codigoError;
 }
+
 
 
 int utn_loguear(int * pIsLogged, int intentosMaximos) {
@@ -484,6 +489,8 @@ int utn_inicializarArrayDeFloats(float arr[], int len, float valorInicial) {
 
 	return codigoError;
 }
+
+
 
 
 
@@ -854,4 +861,85 @@ int utn_esNumerico(char arr[]){
 
 	return hasNumbers;
 }
+
+
+
+int utn_convertirAMayuscula(char * string) {
+	int codigoError;
+
+	codigoError = -1;
+	if (string != NULL) {
+		for(int i = 0; i < strlen(string); i++) {
+			string[i] = toupper(string[i]);
+		}
+	}
+
+	return codigoError;
+}
+
+
+
+int utn_resizeIntArray(int** arr, int* len, int nuevaLen) {
+	int codigoError;
+	int* pArrTemp = NULL;
+
+	codigoError = -1;
+	if (arr != NULL && len != NULL && nuevaLen > 0) {
+		pArrTemp = (int*) realloc(*arr, sizeof(int) * nuevaLen);
+
+		if (pArrTemp != NULL) {
+			*len = nuevaLen;
+			*arr = pArrTemp;
+			codigoError = 0;
+		}
+	}
+
+	return codigoError;
+
+}
+
+
+
+int utn_resizeCharArray(char** arr, int* len, int nuevaLen) {
+	int codigoError;
+	char *pArrTemp = NULL;
+
+	codigoError = -1;
+	if (arr != NULL && len != NULL && nuevaLen > 0) {
+		pArrTemp = (char*)realloc(*arr, sizeof(char) * nuevaLen);
+
+		if (pArrTemp != NULL) {
+			*len = nuevaLen;
+			*arr = pArrTemp;
+			codigoError = 0;
+		}
+	}
+
+	return codigoError;
+}
+
+
+
+int utn_resizeFloatArray(float** arr, int* len, int nuevaLen) {
+	int codigoError;
+	float pArrTemp;
+
+	codigoError = -1;
+	pArrTemp = NULL;
+
+	if (arr != NULL && len != NULL && nuevaLen > 0) {
+		pArrTemp = (float*) realloc(*arr, sizeof(float) * nuevaLen);
+
+		if (pArrTemp != NULL) {
+			*len = nuevaLen;
+			*arr = pArrTemp;
+			codigoError = 0;
+		}
+	}
+
+	return codigoError;
+}
+
+
+
 
